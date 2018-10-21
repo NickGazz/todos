@@ -5,15 +5,13 @@ const cors = require('cors')
 
 const newList = require('./newlist');
 const newTask = require('./newtask');
+const userLists = require('./userLists');
 
-// const auth = require('./auth');
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'));
-
-app.use(express.json());
 
 app.get('/', (req, res)=>{
   res.json({
@@ -21,6 +19,7 @@ app.get('/', (req, res)=>{
   });
 });
 
+app.use('/user', userLists);
 app.use('/newlist', newList);
 app.use('/newtask', newTask);
 
